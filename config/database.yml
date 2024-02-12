@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV.fetch('DATABASE_URL', 'postgres://postgres:3x4mpl3@localhost:5432') %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  min_messages: log
+
+development:
+  <<: *default
+  database: pump-analysis_development
+
+test:
+  <<: *default
+  database: pump-analysis_test
+
+production:
+  <<: *default
